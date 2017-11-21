@@ -39,6 +39,47 @@ global without sharing class ProductPickerController {
         return responseModel;
     }
 
+    @AuraEnabled
+    public static List<OpportunityLineItemWrapper> serverSaveOlis(String allOlisJSON) {
+        System.debug('allOlisJSON: ' + allOlisJSON);
+        List<OpportunityLineItemWrapper> allOlis = (List<OpportunityLineItemWrapper>) JSON.deserialize(allOlisJSON, List<OpportunityLineItemWrapper>.class);
+        List<OpportunityLineItem> olisToUpsert = new List<OpportunityLineItem>();
+        List<OpportunityLineItem> olisToDelete = new List<OpportunityLineItem>();
+        for (OpportunityLineItemWrapper aWrapper : allOlis) {
+            System.debug('a wrapper: ' + aWrapper);
+            if (aWrapper.deleteFlag && String.isNotBlank(aWrapper.oli.Id)) {
+                olisToDelete.add(aWrapper.oli);
+            }
+            else if (!aWrapper.deleteFlag) {
+                olisToUpsert.add(aWrapper.oli);
+            }
+        }
+        Savepoint sp = Database.setSavepoint();
+        if (!olisToDelete.isEmpty()) {
+            try {
+                delete olisToDelete;
+            }
+            catch (DMLException e) {
+                throw new AuraHandledException(e.getMessage());
+            }
+        }
+        if (!olisToUpsert.isEmpty()) {
+            try {
+                upsert olisToUpsert;
+            }
+            catch (DMLException e) {
+                Database.rollback(sp);
+                throw new AuraHandledException(e.getMessage());
+            }
+        }
+        List<OpportunityLineItemWrapper> olisToReturn = new List<OpportunityLineItemWrapper>();
+        for (OpportunityLineItem anOli : olisToUpsert) {
+            olisToReturn.add(new OpportunityLineItemWrapper(anOli));
+        }
+        
+        return olisToReturn;
+    }
+
     public class ProductPickerResponseModel {
         @AuraEnabled public List<OpportunityLineItemWrapper> olis;
         @AuraEnabled public List<PricebookEntry> pbes;

@@ -2,35 +2,38 @@
     <aura:attribute name="wrapper" type="Object" description="The OLI wrapper"/>
     <aura:attribute name="pbes" type="PricebookEntry[]" description="Available Products by PricebookEntry"/>
 
-    <tr>
-        <th scope="row" data-label="Product Name">
-            <div class="slds-truncate">
-                <lightning:select aura:id="ProductSelection" name="Product Name" label="Product Name" value="{!v.wrapper.oli.Product2Id}" variant="label-hidden" onchange="{!c.setSelectedProduct}">
-                    <aura:iteration items="{!v.pbes}" var="aPbe">
-                        <option value="{!aPbe.Product2.Id}" text="{!aPbe.Product2.Name}"/>
-                    </aura:iteration>
-                </lightning:select>
-            </div>
-        </th>
-        <td data-label="Quantity">
-            <div class="slds-truncate">
-                <lightning:input name="Quantity" label="Quantity" variant="label-hidden" value="{!v.wrapper.oli.Quantity}"/>
-            </div>
-        </td>
-        <td data-label="Unit Price">
-            <div class="slds-truncate">
-                <lightning:input name="UnitPrice" label="UnitPrice" variant="label-hidden" value="{!v.wrapper.oli.UnitPrice}"/>
-            </div>
-        </td>
-        <td data-label="Total Price">
-            <div class="slds-truncate">
-                {!v.wrapper.oli.Quantity * v.wrapper.oli.UnitPrice}
-            </div>
-        </td>
-        <td data-label="Delete">
-            <div class="slds-truncate">
-                <lightning:input type="checkbox" label="Delete" value="{!v.wrapper.deleteFlag}"/>
-            </div>
-        </td>
-    </tr>
+    <aura:if isTrue="{!!v.wrapper.deleteFlag}">
+        <tr>
+            <th scope="row" data-label="Product Name">
+                <div class="slds-truncate">
+                    <lightning:select aura:id="ProductSelection" name="Product Name" label="Product Name" value="{!v.wrapper.oli.Product2Id}" variant="label-hidden" onchange="{!c.setSelectedProduct}">
+                        <aura:iteration items="{!v.pbes}" var="aPbe">
+                            <option value="{!aPbe.Product2.Id}" text="{!aPbe.Product2.Name}"/>
+                        </aura:iteration>
+                    </lightning:select>
+                </div>
+            </th>
+            <td data-label="Quantity">
+                <div class="slds-truncate">
+                    <lightning:input name="Quantity" label="Quantity" variant="label-hidden" value="{!v.wrapper.oli.Quantity}"/>
+                </div>
+            </td>
+            <td data-label="Unit Price">
+                <div class="slds-truncate">
+                    <lightning:input name="UnitPrice" label="UnitPrice" variant="label-hidden" value="{!v.wrapper.oli.UnitPrice}"/>
+                </div>
+            </td>
+            <td data-label="Total Price">
+                <div class="slds-truncate">
+                    {!v.wrapper.oli.Quantity * v.wrapper.oli.UnitPrice}
+                </div>
+            </td>
+            <td data-label="Delete">
+                <div class="slds-truncate">
+                    <lightning:button label="Delete" iconName="utility:delete" onclick="{!c.stageForDeletion}"/>
+                </div>
+            </td>
+        </tr>
+    </aura:if>
+    
 </aura:component>
