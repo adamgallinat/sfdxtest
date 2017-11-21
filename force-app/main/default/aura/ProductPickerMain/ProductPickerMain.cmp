@@ -20,6 +20,7 @@
                 <th scope="col">
                     <div class="slds-truncate" title="Total Price">Total Price</div>
                 </th>
+                <th scope="col"></th>
             </tr>
             <tbody>
                 <aura:iteration items="{!v.olis}" var="oli">
@@ -28,6 +29,9 @@
             </tbody>    
         </table>
 
-        <lightning:button label="Save" onclick="{!c.saveOlis}" iconName="utility:save"/>
+        <lightning:buttonGroup class="slds-float_right">
+            <lightning:button label="Add" onclick="{!c.addLineItem}" iconName="utility:add"/>
+            <lightning:button label="Save" onclick="{!c.saveOlis}" iconName="utility:save"/>
+        </lightning:buttonGroup>
     </aura:if>
 </aura:component>

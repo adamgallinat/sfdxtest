@@ -181,10 +181,10 @@
         {
             "sourcePath": "c:\\Users\\Admin\\Documents\\sfdx_test\\product_picker\\ProductPicker\\force-app\\main\\default\\aura\\ProductPickerMain\\ProductPickerMain.cmp",
             "isDirectory": false,
-            "size": 1553,
-            "modifiedTime": 1511288399716,
-            "changeTime": 1511288399716,
-            "contentHash": "451712928312cfd80e6dac56c7a6a82001921e17",
+            "size": 1779,
+            "modifiedTime": 1511288935785,
+            "changeTime": 1511288935785,
+            "contentHash": "0ff7fb726ba430d1d17aeb3240622f96f8aff30e",
             "isMetadataFile": false,
             "state": "u",
             "isWorkspace": false
@@ -294,14 +294,14 @@
     [
         "c:\\Users\\Admin\\Documents\\sfdx_test\\product_picker\\ProductPicker\\force-app\\main\\default\\classes\\ProductPickerController.cls",
         {
-            "state": "u",
             "sourcePath": "c:\\Users\\Admin\\Documents\\sfdx_test\\product_picker\\ProductPicker\\force-app\\main\\default\\classes\\ProductPickerController.cls",
             "isDirectory": false,
-            "isMetadataFile": false,
             "size": 1884,
             "modifiedTime": 1511288605457,
             "changeTime": 1511288605457,
-            "contentHash": "4464685ceeb4c328358b0ccc1be59a6e4dfac1c0"
+            "contentHash": "4464685ceeb4c328358b0ccc1be59a6e4dfac1c0",
+            "isMetadataFile": false,
+            "state": "u"
         }
     ],
     [
@@ -333,14 +333,14 @@
     [
         "c:\\Users\\Admin\\Documents\\sfdx_test\\product_picker\\ProductPicker\\force-app\\main\\default\\aura\\ProductPickerLineItem\\ProductPickerLineItem.cmp",
         {
+            "state": "u",
             "sourcePath": "c:\\Users\\Admin\\Documents\\sfdx_test\\product_picker\\ProductPicker\\force-app\\main\\default\\aura\\ProductPickerLineItem\\ProductPickerLineItem.cmp",
             "isDirectory": false,
-            "size": 1438,
-            "modifiedTime": 1511288349796,
-            "changeTime": 1511288349796,
-            "contentHash": "eae1339ae9c53fd8f5e04395b4df7ab0ed369e3e",
             "isMetadataFile": false,
-            "state": "u"
+            "size": 1650,
+            "modifiedTime": 1511290075384,
+            "changeTime": 1511290075384,
+            "contentHash": "a6d6e2bf8bfd42ff30b614f6e40b060f33b211f6"
         }
     ],
     [
@@ -374,10 +374,10 @@
         {
             "sourcePath": "c:\\Users\\Admin\\Documents\\sfdx_test\\product_picker\\ProductPicker\\force-app\\main\\default\\aura\\ProductPickerLineItem\\ProductPickerLineItemController.js",
             "isDirectory": false,
-            "size": 288,
-            "modifiedTime": 1511287410011,
-            "changeTime": 1511287410011,
-            "contentHash": "fa3af4ffcf30bcf1e75cc0ee9001c0df0eb626c8",
+            "size": 832,
+            "modifiedTime": 1511289855970,
+            "changeTime": 1511289855970,
+            "contentHash": "c488819e66fbd63d5500f608c804ea5dcf30a711",
             "isMetadataFile": false,
             "state": "u"
         }
