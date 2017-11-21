@@ -9,14 +9,19 @@ global without sharing class ProductPickerController {
             WHERE
                 Id = :opportunityId
         ];
-        List<OpportunityLineItem> olis = [
-            SELECT
-                Id, Product2Id, Quantity, UnitPrice
-            FROM
-                OpportunityLineItem
-            WHERE
-                OpportunityId = :opportunityId
-        ];
+
+        List<OpportunityLineItemWrapper> olis = new List<OpportunityLineItemWrapper>();
+        for (OpportunityLineItem anOli : [
+                                            SELECT
+                                                Id, Product2Id, Quantity, UnitPrice
+                                            FROM
+                                                OpportunityLineItem
+                                            WHERE
+                                                OpportunityId = :opportunityId
+        ]) {
+            olis.add(new OpportunityLineItemWrapper(anOli));
+        }
+
         List<PricebookEntry> pbes = [
             SELECT
                 Id, Product2.Name, UnitPrice
@@ -35,7 +40,17 @@ global without sharing class ProductPickerController {
     }
 
     public class ProductPickerResponseModel {
-        @AuraEnabled public List<OpportunityLineItem> olis;
+        @AuraEnabled public List<OpportunityLineItemWrapper> olis;
         @AuraEnabled public List<PricebookEntry> pbes;
+    }
+
+    public class OpportunityLineItemWrapper {
+        @AuraEnabled public OpportunityLineItem oli;
+        @AuraEnabled public Boolean deleteFlag;
+
+        public OpportunityLineItemWrapper(OpportunityLineItem oli) {
+            this.oli = oli;
+            this.deleteFlag = false;
+        }
     }
 }

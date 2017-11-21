@@ -1,5 +1,5 @@
 <aura:component>
-    <aura:attribute name="oli" type="OpportunityLineItem" description="The OLI"/>
+    <aura:attribute name="wrapper" type="Object" description="The OLI wrapper"/>
     <aura:attribute name="pbes" type="PricebookEntry[]" description="Available Products by PricebookEntry"/>
 
     <tr>
@@ -14,17 +14,17 @@
         </th>
         <td data-label="Quantity">
             <div class="slds-truncate">
-                <lightning:input type="number" name="Quantity" label="Quantity" variant="label-hidden" value="{!v.oli.Quantity}"/>
+                <lightning:input type="number" name="Quantity" label="Quantity" variant="label-hidden" value="{!v.wrapper.oli.Quantity}"/>
             </div>
         </td>
         <td data-label="Unit Price">
             <div class="slds-truncate">
-                <lightning:input type="number" name="UnitPrice" label="UnitPrice" variant="label-hidden" value="{!v.oli.UnitPrice}"/>
+                <lightning:input type="number" name="UnitPrice" label="UnitPrice" variant="label-hidden" value="{!v.wrapper.oli.UnitPrice}"/>
             </div>
         </td>
         <td data-label="Total Price">
             <div class="slds-truncate">
-                {!v.oli.Quantity * v.oli.UnitPrice}
+                {!v.wrapper.oli.Quantity * v.wrapper.oli.UnitPrice}
             </div>
         </td>
     </tr>

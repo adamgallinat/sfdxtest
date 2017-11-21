@@ -1,6 +1,6 @@
 <aura:component controller="ProductPickerController" implements="flexipage:availableForRecordHome">
     <aura:attribute type="Id" name="oppId" description="Opportunity Id"/>
-    <aura:attribute type="OpportunityLineItem[]" name="olis" description="Opportunity Line Items"/>
+    <aura:attribute type="Object[]" name="olis" description="Opportunity Line Item Wrappers"/>
     <aura:attribute type="PricebookEntry[]" name="pbes" description="Pricebook entries for opportunity's current pricebook"/>
 
     <aura:handler name="init" value="{!this}" action="{!c.init}"/>
@@ -23,7 +23,7 @@
             </tr>
             <tbody>
                 <aura:iteration items="{!v.olis}" var="oli">
-                    <c:ProductPickerLineItem oli="{!oli}" pbes="{!v.pbes}"/>
+                    <c:ProductPickerLineItem wrapper="{!oli}" pbes="{!v.pbes}"/>
                 </aura:iteration>
             </tbody>    
         </table>
