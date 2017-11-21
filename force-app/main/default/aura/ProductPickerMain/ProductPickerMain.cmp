@@ -1,0 +1,33 @@
+<aura:component controller="ProductPickerController" implements="flexipage:availableForRecordHome">
+    <aura:attribute type="Id" name="oppId" description="Opportunity Id"/>
+    <aura:attribute type="OpportunityLineItem[]" name="olis" description="Opportunity Line Items"/>
+    <aura:attribute type="PricebookEntry[]" name="pbes" description="Pricebook entries for opportunity's current pricebook"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:if isTrue="{!v.olis}">
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <tr class="slds-text-title_caps">
+                <th scope="col">
+                    <div class="slds-truncate" title="Product Name">Product Name</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Quantity">Quantity</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Unit Price">Unit Price</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Total Price">Total Price</div>
+                </th>
+            </tr>
+            <tbody>
+                <aura:iteration items="{!v.olis}" var="oli">
+                    <c:ProductPickerLineItem oli="{!oli}" pbes="{!v.pbes}"/>
+                </aura:iteration>
+            </tbody>    
+        </table>
+
+        <lightning:button label="Save" onclick="{!c.saveOlis}" iconName="utility:save"/>
+    </aura:if>
+</aura:component>

@@ -1,0 +1,31 @@
+<aura:component>
+    <aura:attribute name="oli" type="OpportunityLineItem" description="The OLI"/>
+    <aura:attribute name="pbes" type="PricebookEntry[]" description="Available Products by PricebookEntry"/>
+
+    <tr>
+        <th scope="row" data-label="Product Name">
+            <div class="slds-truncate">
+                <lightning:select aura:id="ProductSelection" name="Product Name" label="Product Name" variant="label-hidden" onchange="{!c.setSelectedProduct}">
+                    <aura:iteration items="{!v.pbes}" var="aPbe">
+                        <option value="{!aPbe.Product2.Id}" text="{!aPbe.Product2.Name}"/>
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+        </th>
+        <td data-label="Quantity">
+            <div class="slds-truncate">
+                <lightning:input type="number" name="Quantity" label="Quantity" variant="label-hidden" value="{!v.oli.Quantity}"/>
+            </div>
+        </td>
+        <td data-label="Unit Price">
+            <div class="slds-truncate">
+                <lightning:input type="number" name="UnitPrice" label="UnitPrice" variant="label-hidden" value="{!v.oli.UnitPrice}"/>
+            </div>
+        </td>
+        <td data-label="Total Price">
+            <div class="slds-truncate">
+                {!v.oli.Quantity * v.oli.UnitPrice}
+            </div>
+        </td>
+    </tr>
+</aura:component>
